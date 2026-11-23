@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px 32px;
+}
+
+.header > :last-child {
+  flex: 1 1 280px;
+  max-width: 420px;
+}

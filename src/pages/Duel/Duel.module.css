@@ -1,0 +1,142 @@
+/* ---------- Duel en cours ---------- */
+.header {
+  text-align: center;
+}
+
+/* Largeur des cartes limitée par la hauteur d'écran pour que le duel tienne sans défiler. */
+.arena {
+  --card-width: minmax(0, min(320px, 36vh));
+
+  display: grid;
+  grid-template-columns: var(--card-width) auto var(--card-width);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(16px, 4vw, 40px);
+}
+
+/* La mention "VS" est placée entre les deux cartes, quel que soit l'ordre du DOM. */
+.arena > :first-child {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.arena > :nth-child(2) {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Pas de clavier sur les écrans tactiles : on masque l'astuce des flèches. */
+@media (hover: none) {
+  .keyboardHint {
+    display: none;
+  }
+}
+
+.versus {
+  grid-column: 2;
+  grid-row: 1;
+  color: var(--color-accent);
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-shadow: 0 0 24px rgb(229 185 78 / 0.4);
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.remaining {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+/* ---------- Écran final ---------- */
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.championPoster {
+  position: relative;
+  width: min(300px, 80vw);
+  aspect-ratio: 2 / 3;
+  margin-block: 16px 8px;
+  overflow: hidden;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  box-shadow: 0 0 60px rgb(229 185 78 / 0.25), var(--shadow-poster);
+  animation: champion-reveal 0.7s var(--ease-out) backwards;
+}
+
+.championFavorite {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.championName {
+  font-size: clamp(2.2rem, 6vw, 3.2rem);
+}
+
+.wins {
+  color: var(--color-accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+@keyframes champion-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.85) rotate(-3deg);
+  }
+}
+
+/* ---------- Mobile : les cartes s'empilent ---------- */
+@media (max-width: 640px) {
+  .arena {
+    grid-template-columns: minmax(0, 240px);
+    gap: 12px;
+  }
+
+  .arena > :first-child {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .versus {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .arena > :nth-child(2) {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}

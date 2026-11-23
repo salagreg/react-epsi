@@ -1,0 +1,41 @@
+.button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.15);
+  border-radius: 50%;
+  background: rgb(11 11 15 / 0.7);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--ease-out),
+    border-color 0.2s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  border-color: var(--color-accent);
+}
+
+.button svg {
+  width: 20px;
+  height: 20px;
+  fill: transparent;
+  stroke: var(--color-text);
+  stroke-width: 2;
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.active svg {
+  fill: var(--color-accent);
+  stroke: var(--color-accent);
+  animation: pop 0.3s var(--ease-out);
+}
+
+@keyframes pop {
+  50% {
+    transform: scale(1.3);
+  }
+}
