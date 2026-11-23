@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
+import { hasTmdbToken } from '../../api/tmdb'
 import HeroPosters from './HeroPosters'
+import MissingTokenNotice from './MissingTokenNotice'
 import styles from './Home.module.css'
 
 const STEPS = [
@@ -30,7 +32,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <HeroPosters />
+      {hasTmdbToken() ? <HeroPosters /> : <MissingTokenNotice />}
 
       <ol className={styles.steps}>
         {STEPS.map((step, index) => (

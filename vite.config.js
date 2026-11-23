@@ -4,6 +4,6 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Chemins relatifs : l'app fonctionne sur GitHub Pages (sous /react-epsi/) avec le HashRouter.
-  base: './',
+  // Le site GitHub Pages est servi sous https://salagreg.github.io/react-epsi/
+  base: '/react-epsi/',
 })

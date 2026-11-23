@@ -4,12 +4,18 @@ const API_URL = 'https://api.themoviedb.org/3'
 const LANGUAGE = 'fr-FR'
 const POOL_PAGES = 10
 
+const token = import.meta.env.VITE_TMDB_TOKEN
+
+/** Indique si un token TMDB a été fourni au moment du build. */
+export function hasTmdbToken() {
+  return Boolean(token)
+}
+
 /**
  * Appel générique à l'API TMDB v3 (authentification par Bearer token).
  * C'est le seul endroit de l'application qui utilise fetch.
  */
 async function request(path, params = {}, { signal } = {}) {
-  const token = import.meta.env.VITE_TMDB_TOKEN
   if (!token) {
     throw new Error('Token TMDB manquant : ajoute VITE_TMDB_TOKEN dans le fichier .env.')
   }

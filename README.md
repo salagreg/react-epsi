@@ -1,12 +1,12 @@
 # 🎬 Ciné Duel
 
+🔗 **Voir le site : [salagreg.github.io/react-epsi](https://salagreg.github.io/react-epsi/)**
+
 > Deux actrices, une seule place sous les projecteurs.
 
 **Ciné Duel** est une petite application React où l'on départage, duel après duel, les actrices les plus populaires du moment. Elle utilise les données de [TMDB](https://www.themoviedb.org/).
 
 Projet réalisé dans le cadre de ma formation à l'EPSI.
-
-🔗 **Démo :** https://salagreg.github.io/react-epsi/
 
 ## Fonctionnalités
 
@@ -52,7 +52,7 @@ cp .env.example .env   # puis colle ton token TMDB dans .env
 npm run dev
 ```
 
-L'application est ensuite disponible sur http://localhost:5173.
+L'application est ensuite disponible sur http://localhost:5173/react-epsi/ (le chemin `/react-epsi/` correspond à la `base` définie dans `vite.config.js`, la même que sur GitHub Pages).
 
 | Commande          | Rôle                                  |
 | ----------------- | ------------------------------------- |
@@ -74,13 +74,32 @@ L'application est ensuite disponible sur http://localhost:5173.
 
 Le fichier `.env` est ignoré par Git : ton token ne sera jamais commité.
 
-## Déploiement sur GitHub Pages
+## Déploiement
 
-Le workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) construit et publie le site à chaque push sur `main`.
+Le site est hébergé sur **GitHub Pages** : https://salagreg.github.io/react-epsi/
 
-1. Dans le dépôt GitHub, va dans **Settings → Secrets and variables → Actions** et ajoute un secret `VITE_TMDB_TOKEN`.
-2. Dans **Settings → Pages**, choisis **Source : GitHub Actions**.
-3. Pousse sur `main` : le site est publié sur `https://<ton-pseudo>.github.io/react-epsi/`.
+Le workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) se lance à chaque push sur `main`, ou à la main depuis l'onglet **Actions** (_Run workflow_). Il installe les dépendances (`npm ci`), construit l'app (`npm run build`) puis publie le dossier `dist/`.
+
+### 1. Ajouter le secret `VITE_TMDB_TOKEN`
+
+Le fichier `.env` n'est pas versionné, donc GitHub Actions ne connaît pas ton token. Il faut le lui donner sous forme de secret :
+
+1. Dans le dépôt, ouvre **Settings → Secrets and variables → Actions**.
+2. Clique sur **New repository secret**.
+3. Nom : `VITE_TMDB_TOKEN`. Valeur : ton _API Read Access Token_ TMDB (celui qui commence par `eyJ…`).
+
+Sans ce secret, le build réussit quand même, mais le site affiche un message « Token TMDB manquant » sur la page d'accueil.
+
+### 2. Activer GitHub Pages en mode GitHub Actions
+
+1. Ouvre **Settings → Pages**.
+2. Dans **Build and deployment → Source**, choisis **GitHub Actions**.
+
+### 3. Publier
+
+Pousse sur `main` (ou lance le workflow depuis l'onglet **Actions**). Une fois le job terminé, le site est en ligne sur https://salagreg.github.io/react-epsi/.
+
+L'app utilise le `HashRouter` (URLs du type `/react-epsi/#/duel`) : les pages fonctionnent même après un rafraîchissement, sans configuration de redirection côté GitHub Pages.
 
 > ⚠️ L'application n'a pas de backend : le token est intégré au JavaScript publié et reste donc visible par les visiteurs. Le jeton TMDB est en lecture seule, mais pour un vrai produit il faudrait passer par un petit proxy côté serveur.
 
