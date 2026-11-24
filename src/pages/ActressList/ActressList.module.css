@@ -6,6 +6,18 @@
   gap: 20px 32px;
 }
 
+.proposeLink {
+  margin-top: 16px;
+}
+
+.success {
+  margin-bottom: 28px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: rgb(229 185 78 / 0.1);
+}
+
 .header > :last-child {
   flex: 1 1 280px;
   max-width: 420px;

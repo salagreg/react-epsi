@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.total {
+  color: var(--color-accent);
+  font-size: 1.1rem;
+  font-weight: 700;
+}

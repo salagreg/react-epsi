@@ -1,0 +1,103 @@
+.detail {
+  display: grid;
+  grid-template-columns: minmax(220px, 340px) 1fr;
+  gap: clamp(24px, 5vw, 56px);
+  align-items: start;
+}
+
+.poster {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-poster);
+}
+
+.favorite {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.backLink,
+.back a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.backLink:hover,
+.back a:hover {
+  color: var(--color-accent);
+}
+
+.back {
+  text-align: center;
+}
+
+.meta {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.biography {
+  max-width: 70ch;
+  color: var(--color-text-muted);
+  white-space: pre-line;
+}
+
+/* ---------- Films ---------- */
+.moviesTitle {
+  margin: 16px 0 12px;
+  font-size: 1.8rem;
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moviePoster {
+  aspect-ratio: 2 / 3;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.moviePoster > div {
+  font-size: 2rem;
+}
+
+.movieTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.movieYear {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+
+  .poster {
+    width: min(280px, 100%);
+    margin-inline: auto;
+  }
+}

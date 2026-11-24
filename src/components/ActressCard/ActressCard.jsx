@@ -1,3 +1,4 @@
+import { Link } from 'react-router'
 import FavoriteButton from '../FavoriteButton/FavoriteButton'
 import KnownFor from '../KnownFor/KnownFor'
 import PosterImage from '../PosterImage/PosterImage'
@@ -11,7 +12,12 @@ export default function ActressCard({ actress }) {
         <FavoriteButton actress={actress} className={styles.favorite} />
       </div>
       <div className={styles.info}>
-        <h3 className={styles.name}>{actress.name}</h3>
+        <h3 className={styles.name}>
+          {/* Le lien s'étend sur toute la carte (voir ::after dans le CSS) */}
+          <Link to={`/actrices/${actress.id}`} className={styles.link}>
+            {actress.name}
+          </Link>
+        </h3>
         <KnownFor titles={actress.knownFor} />
       </div>
     </article>

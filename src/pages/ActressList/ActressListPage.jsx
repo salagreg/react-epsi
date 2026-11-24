@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useActressPool } from '../../hooks/useActressPool'
 import { useActressSearch } from '../../hooks/useActressSearch'
@@ -10,6 +11,8 @@ export default function ActressListPage() {
   const [query, setQuery] = useState('')
   const pool = useActressPool()
   const search = useActressSearch(query)
+  // Proposition transmise par la page /actrices/new après un envoi réussi
+  const proposal = useLocation().state?.proposal
 
   const results = search.isActive
     ? {
@@ -41,9 +44,18 @@ export default function ActressListPage() {
                 : `${pluralize(results.actresses.length, 'actrice')} populaires sur TMDB`}
             </p>
           )}
+          <Link to="/actrices/new" className={`btn btn-ghost ${styles.proposeLink}`}>
+            + Proposer une actrice
+          </Link>
         </div>
         <SearchBar value={query} onChange={setQuery} />
       </header>
+
+      {proposal && (
+        <p className={styles.success} role="status">
+          Merci ! Ta proposition « {proposal.name} » a bien été envoyée (n° {proposal.id}).
+        </p>
+      )}
 
       <ActressResults {...results} />
     </section>

@@ -2,7 +2,9 @@ import { Route, Routes } from 'react-router'
 import Footer from './components/Footer/Footer'
 import Navbar from './components/Navbar/Navbar'
 import ScrollToTop from './components/ScrollToTop'
+import ActressDetailPage from './pages/ActressDetail/ActressDetailPage'
 import ActressListPage from './pages/ActressList/ActressListPage'
+import NewActressPage from './pages/NewActress/NewActressPage'
 import DuelPage from './pages/Duel/DuelPage'
 import FavoritesPage from './pages/Favorites/FavoritesPage'
 import HomePage from './pages/Home/HomePage'
@@ -19,6 +21,8 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/duel" element={<DuelPage />} />
           <Route path="/actrices" element={<ActressListPage />} />
+          <Route path="/actrices/new" element={<NewActressPage />} />
+          <Route path="/actrices/:id" element={<ActressDetailPage />} />
           <Route path="/favoris" element={<FavoritesPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

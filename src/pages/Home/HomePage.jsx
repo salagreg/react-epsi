@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { hasTmdbToken } from '../../api/tmdb'
+import { hasTmdbToken } from '../../services/tmdb'
 import HeroPosters from './HeroPosters'
 import MissingTokenNotice from './MissingTokenNotice'
 import styles from './Home.module.css'

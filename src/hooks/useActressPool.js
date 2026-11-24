@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getActressPool } from '../api/tmdb'
+import { getActressPool } from '../services/tmdb'
 
 const LOADING = { status: 'loading', actresses: [], error: null }
 

@@ -33,14 +33,16 @@ export default function FavoritesProvider({ children }) {
     )
   }, [])
 
+  const clearFavorites = useCallback(() => setFavorites([]), [])
+
   const isFavorite = useCallback(
     (id) => favorites.some((favorite) => favorite.id === id),
     [favorites],
   )
 
   const value = useMemo(
-    () => ({ favorites, toggleFavorite, isFavorite }),
-    [favorites, toggleFavorite, isFavorite],
+    () => ({ favorites, toggleFavorite, clearFavorites, isFavorite }),
+    [favorites, toggleFavorite, clearFavorites, isFavorite],
   )
 
   return <FavoritesContext value={value}>{children}</FavoritesContext>

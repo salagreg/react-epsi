@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { searchActresses } from '../api/tmdb'
+import { searchActresses } from '../services/tmdb'
 
 const DEBOUNCE_MS = 400
 const EMPTY = { query: '', results: [], error: null }

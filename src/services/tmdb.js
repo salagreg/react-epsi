@@ -1,4 +1,4 @@
-import { isActress, toActress, uniqueById } from '../utils/actress'
+import { isActress, toActress, toActressDetails, uniqueById } from '../utils/actress'
 
 const API_URL = 'https://api.themoviedb.org/3'
 const LANGUAGE = 'fr-FR'
@@ -35,6 +35,9 @@ async function request(path, params = {}, { signal } = {}) {
   if (response.status === 401) {
     throw new Error('Token TMDB invalide : vérifie la valeur de VITE_TMDB_TOKEN.')
   }
+  if (response.status === 404) {
+    throw new Error('Cette actrice est introuvable sur TMDB (erreur 404).')
+  }
   if (!response.ok) {
     throw new Error(`TMDB a répondu avec une erreur (${response.status}). Réessaie dans un instant.`)
   }
@@ -64,4 +67,10 @@ export function getActressPool() {
 export async function searchActresses(query, { signal } = {}) {
   const data = await request('/search/person', { query, include_adult: 'false' }, { signal })
   return uniqueById((data.results ?? []).filter(isActress).map(toActress))
+}
+
+/** Fiche d'une actrice : GET /person/:id, avec ses films dans la même requête. */
+export async function getActressById(id, { signal } = {}) {
+  const data = await request(`/person/${id}`, { append_to_response: 'movie_credits' }, { signal })
+  return toActressDetails(data)
 }
