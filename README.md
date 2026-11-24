@@ -6,8 +6,4 @@
 
 **Ce qui ne marche pas :** le POST part vers JSONPlaceholder, car TMDB refuse l'écriture avec un token en lecture seule. La proposition reçoit un id mais n'est pas enregistrée. Le token est visible dans le JavaScript publié, faute de backend.
 
-**Ce que l'IA a écrit :** Claude (Anthropic) m'a aidé à écrire le code et le CSS à partir de mes choix (thème, pages, fonctionnalités).
-
-Détails (installation, token TMDB, déploiement) : [docs/DETAILS.md](docs/DETAILS.md).
-
-This product uses the TMDB API but is not endorsed or certified by TMDB.
+**Ce que l'IA a écrit :** Claude m'a aidé à écrire le code et le CSS à partir de mes choix (thème, pages, fonctionnalités).
